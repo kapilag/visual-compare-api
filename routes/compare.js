@@ -7,13 +7,20 @@ var JSON = 'application/json';
 router.post('/', function(req, res, next) {
 	if (req.is(JSON) && req.accepts(JSON)) {
 		try {
-			resemble(req.body.images.before).compareTo(req.body.images.after).onComplete(function(data){
-				var resData = data;
-				resData.imageDataUrl = data.getImageDataUrl();			
-				res.json(resData);
-			});
-		} catch(e) {
-			next(new Error('Can\'t parse Body'));
+			if (typeof req.body.images.before === 'string' && typeof req.body.images.after === 'string') {
+				var before = new Buffer(req.body.images.before.split(",")[1], 'base64');
+				var after = new Buffer(req.body.images.before.split(",")[1], 'base64');
+	
+				resemble(before).compareTo(after).onComplete(function(data){
+					var resData = data;
+					resData.imageDataUrl = data.getImageDataUrl();			
+					res.json(resData);
+				});
+			} else {
+				throw new Error("Invalid JSON schema");
+			}
+		} catch(error) {
+			next(error);
 		}
 	} else {
 		next(new Error('Invalid sent/accepted content type.'));
