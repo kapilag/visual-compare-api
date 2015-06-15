@@ -10,7 +10,7 @@ router.post('/', function(req, res, next) {
 			resemble(req.body.images.before).compareTo(req.body.images.after).onComplete(function(data){
 				var resData = data;
 				resData.imageDataUrl = data.getImageDataUrl();			
-				res.json(resData);
+				res.json(data);
 			});
 		} catch(e) {
 			next(new Error('Can\'t parse Body'));
