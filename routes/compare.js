@@ -9,7 +9,7 @@ router.post('/', function(req, res, next) {
 		try {
 			if (typeof req.body.images.before === 'string' && typeof req.body.images.after === 'string') {
 				var before = new Buffer(req.body.images.before.split(",")[1], 'base64');
-				var after = new Buffer(req.body.images.before.split(",")[1], 'base64');
+				var after = new Buffer(req.body.images.after.split(",")[1], 'base64');
 	
 				resemble(before).compareTo(after).onComplete(function(data){
 					var resData = data;
