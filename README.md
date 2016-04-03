@@ -13,7 +13,9 @@ of comparing two images and saving the difference images if there is any.
 With this approach comparison of images and sharing the difference images in abstracted out and one can concentrate on writing
 client in the respective programming language in which there automation scripts are.
 
-Will be sharing one client written in java soon.
+#Clients(Selenium as a driver)
+* [Java](https://github.com/kapilag/visual-compare-client)
+* Ruby - coming soon
 
 ##Credits
 Special thanks to [MortizPlatt](https://github.com/mplatt) for this project
